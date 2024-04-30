@@ -1,0 +1,25 @@
+.logo {
+    max-width: 48px;
+    aspect-ratio: 1;
+}
+
+.main-header {
+    padding-inline: 16px;
+    z-index: 13;
+    border-radius: 0.3rem;
+    border: 1px solid var(--clr-primary-light);
+    box-shadow: 0 0 10px hsl(0, 0%, 90% / 0.5);
+
+    background-color: var(--clr-body, white);
+    color: var(--clr-primary-dark) !important;
+}
+
+.nav-link {
+    color: var(--clr-primary-dark);
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.nav-link:hover {
+    background-color: var(--clr-primary-dark);
+    color: white;
+}

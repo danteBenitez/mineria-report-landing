@@ -1,0 +1,34 @@
+.main-content {
+    margin-inline: 0.4rem;
+    padding-inline: 0.8rem;
+    padding-block: 2rem;
+    position: relative;
+    top: -5rem;
+    background-color: white;
+    z-index: 11;
+    min-height: 100vh;
+
+    border: 1px solid hsl(0, 0%, 90%);
+    box-shadow: 0 0 10px hsl(0, 0%, 90% / 0.5);
+    color: var(--clr-primary-dark);
+
+}
+
+.main-content :where(h1, h2, h3) {
+    font-weight: 500;
+    color: var(--clr-primary-dark);
+}
+
+.main-content p {
+    margin: 1.5rem 0;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: var(--clr-primary-dark);
+}
+
+@media (min-width: 768px) {
+    .main-content {
+        margin-inline: 14rem;
+        padding-inline: 2.3rem;
+    }
+}
