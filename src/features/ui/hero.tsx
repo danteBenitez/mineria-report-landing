@@ -3,13 +3,13 @@ import './hero.css';
 
 export function Hero() {
     return (
-        <section className="hero w-100 d-flex flex-column flex-md-row align-items-center mb-3 bg-body">
+        <section className="hero w-100 mb-3 bg-body">
+            <hgroup>
+                <h1 className="text-accent-animated hero-title">Calidad del aire</h1>
+                <h2 className="hero-subtitle">Medición de contaminantes en estaciones de Buenos Aires</h2>
+            </hgroup>
             <div className="w-100">
                 <img src={heroImage} alt="" className="object-fit-cover hero-img" />
-                <hgroup>
-                    <h1>Reporte sobre calidad de aire</h1>
-                    <span>Medición de contaminantes atmosféricos</span>
-                </hgroup>
             </div>
         </section>
     );

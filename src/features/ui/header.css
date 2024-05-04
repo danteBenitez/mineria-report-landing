@@ -5,6 +5,8 @@
 
 .main-header {
     padding-inline: 16px;
+    margin-inline: 0;
+    margin-bottom: 1.2rem;
     z-index: 13;
     border-radius: 0.3rem;
     border: 1px solid var(--clr-primary-light);
@@ -12,6 +14,18 @@
 
     background-color: var(--clr-body, white);
     color: var(--clr-primary-dark) !important;
+}
+
+@media (min-width: 768px) {
+    .main-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-inline: 3rem;
+        margin-block: 1.1rem;
+        position: sticky; 
+        top: 1.5rem;
+    }
 }
 
 .nav-link {

@@ -2,8 +2,6 @@
     margin-inline: 0.4rem;
     padding-inline: 0.8rem;
     padding-block: 2rem;
-    position: relative;
-    top: -5rem;
     background-color: white;
     z-index: 11;
     min-height: 100vh;
@@ -28,7 +26,7 @@
 
 @media (min-width: 768px) {
     .main-content {
-        margin-inline: 14rem;
+        margin-inline: 12rem;
         padding-inline: 2.3rem;
     }
 }

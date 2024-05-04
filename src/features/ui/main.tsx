@@ -1,5 +1,6 @@
 import './main.css';
 import baLogo from '../../assets/ba-logo.png';
+import { ContaminantEvolutionChart } from '../charts/contaminant-evolution';
 
 export function Main() {
     return <main className="main-content">
@@ -28,7 +29,13 @@ export function Main() {
                 Alias tempora porro iste eaque illum dolore unde reiciendis quas nobis? Cumque dolorum voluptates, vero deleniti nesciunt amet quia quae saepe eveniet? Corrupti quia, rem aut repudiandae inventore quo cum?
             </p>
         </section>
-
+        <section>
+            <h2>
+                Concentración promedio de dióxido de Nitrógeno en la estación
+                Centenario a lo largo del timepo.
+            </h2>
+            <ContaminantEvolutionChart contaminant='no2' station='centenario' />
+        </section>
         <section>
             <h2 className="fw-semibold">Evolución temporal</h2>
             <p>
