@@ -34,7 +34,8 @@ export function Main() {
                 Concentración promedio de dióxido de Nitrógeno en la estación
                 Centenario a lo largo del timepo.
             </h2>
-            <ContaminantEvolutionChart contaminant='no2' station='centenario' />
+            <ContaminantEvolutionChart contaminant='no2' station='centenario' unit='ppb' />
+            <ContaminantEvolutionChart contaminant='co' station='centenario' unit='ppb' />
         </section>
         <section>
             <h2 className="fw-semibold">Evolución temporal</h2>
