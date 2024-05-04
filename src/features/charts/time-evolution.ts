@@ -1,9 +1,10 @@
 import * as Plot from '@observablehq/plot';
 
-type Options = {
+export type Options = {
     labelX: string,
     labelY: string,
-    title: string
+    title: string,
+    width: number
 }
 
 export function graphTimeEvolution(data: [Date,number][], options: Options) {
@@ -23,6 +24,7 @@ export function graphTimeEvolution(data: [Date,number][], options: Options) {
             axis: 'left',
             label: options.labelY,
         },
+        width: options.width,
         title: `Evolución temporal de ${options.title}`,
     })
 }
