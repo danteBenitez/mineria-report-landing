@@ -1,8 +1,8 @@
-import './App.css'
 import 'bootstrap-icons/font/bootstrap-icons.min.css';
-import { Header } from './features/ui/header';
-import { Hero } from './features/ui/hero';
-import { Main } from './features/ui/main';
+import './App.css';
+import { Header } from './features/ui/header/header';
+import { Hero } from './features/ui/hero/hero';
+import { Main } from './features/ui/main-content/main';
 
 function App() {
   return (

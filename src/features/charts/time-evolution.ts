@@ -28,12 +28,12 @@ export function graphTimeEvolution(data: [Date, number][], options: Options) {
             label: options.labelY,
         },
         width: options.width,
-        title: html`<h2 class="fs-4">Evolución temporal de ${options.title}</h2>`
+        title: html`<h2 class="fs-4">${options.title}</h2>`
     })
 }
 
 export function graphHourEvolution(data: [number, number][], options: Options) {
-    return Plot.barY(data, {
+    return Plot.line(data, {
         tip: true,
         stroke: '#1f77b4',
         x: d => d[0],
@@ -51,6 +51,6 @@ export function graphHourEvolution(data: [number, number][], options: Options) {
             label: options.labelY,
         },
         width: options.width,
-        title: html`<h2 class="fs-4">Evolución temporal de ${options.title}</h2>`
+        title: html`<h2 class="fs-4">${options.title}</h2>`
     })
 }

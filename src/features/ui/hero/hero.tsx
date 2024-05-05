@@ -1,4 +1,4 @@
-import heroImage from '../../assets/calidad-del-aire-bg.jpg';
+import heroImage from '../../../assets/calidad-del-aire-bg.jpg';
 import './hero.css';
 
 export function Hero() {

@@ -1,6 +1,6 @@
+import baLogo from '../../../assets/ba-logo.png';
+import { ContaminantEvolutionChart, ContaminantHourlyEvolutionChart } from '../../charts/contaminant-evolution';
 import './main.css';
-import baLogo from '../../assets/ba-logo.png';
-import { ContaminantEvolutionChart, ContaminantHourlyEvolutionChart } from '../charts/contaminant-evolution';
 
 export function Main() {
     return <main className="main-content">

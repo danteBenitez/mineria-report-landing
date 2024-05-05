@@ -1,4 +1,4 @@
-import airQualityReportLogo from '../../assets/air-quality-logo.png';
+import airQualityReportLogo from '../../../assets/air-quality-logo.png';
 import './header.css';
 
 export function Header() {
