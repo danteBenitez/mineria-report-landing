@@ -1,17 +1,16 @@
 import baLogo from '../../../assets/ba-logo.png';
-import { ContaminantEvolutionChart, ContaminantHourlyEvolutionChart } from '../../charts/contaminant-evolution';
-import { Carousel } from '../carousel/carousel';
+import { ContaminantEvolutionChart } from '../../charts/contaminant-evolution';
 import { HeadingWithIcon } from '../headings/heading-with-icon';
 import './main.css';
 
-const LIMIT_FOR_CONTAMINANTS = {
-    'no2': 200,
-    'co': 35,
-    'pm10': 50
-};
+// const LIMIT_FOR_CONTAMINANTS = {
+//     'no2': 200,
+//     'co': 35,
+//     'pm10': 50
+// };
 
-const CONTAMINANTS = ['no2', 'co', 'pm10'] as const;
-const STATIONS = ['centenario', 'la_boca', 'palermo', 'cordoba'] as const;
+// const CONTAMINANTS = ['no2', 'co', 'pm10'] as const;
+// const STATIONS = ['centenario', 'la_boca', 'palermo', 'cordoba'] as const;
 
 const UNITS = {
     'no2': 'ppm',
@@ -92,6 +91,7 @@ export function Main() {
                 Las medidas se realizan de forma diaria, promediando aquellas tomadas en cada día.
             </p>
             <ContaminantEvolutionChart contaminant='no2' station='centenario' unit={UNITS['no2']} />
+            <ContaminantEvolutionChart contaminant='co' station='centenario' unit={UNITS['co']} />
             <p>
                 Como se puede apreciar, las medidas
             </p>

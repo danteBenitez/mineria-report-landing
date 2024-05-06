@@ -52,7 +52,6 @@ def percentage_per_station(measures: pd.DataFrame, station: str, *, limit) -> pd
     filtered: pd.DataFrame = filtered[filtered[station] > limit]
 
     result["percentage"] = filtered.index.size * 100 / total
-    print(result)
     return result
 
 def write_percentage_that_exceeds_limit(measures: pd.DataFrame, contaminant: str, station: str, file_path: str):
@@ -86,6 +85,12 @@ PERCENTAGE_PATH.mkdir(parents=True, exist_ok=True)
 
 START_YEAR = 2019
 
+average_for_contaminant = {
+    "CO": {},
+    "NO2": {},
+    "PM10": {}
+}
+
 for contaminant in CONTAMINANTS:
     for station in STATIONS:
         try: 
@@ -98,10 +103,10 @@ for contaminant in CONTAMINANTS:
             raw_data[station] = pd.to_numeric(raw_data[station])
             raw_data["fecha"] = raw_data["fecha"][raw_data["fecha"].dt.year >= START_YEAR]
 
+            average_for_contaminant[contaminant][station] = raw_data[station].mean()
+            
             average = get_contaminant_avg(raw_data, station=station)
             average_for_hour = get_contaminant_avg_for_hours(raw_data, station=station)
-            
-            percentage_per_station(raw_data, station=station, limit=0.1)
 
             file_path_plain = f"{contaminant.lower()}_{station}.csv"
 
@@ -121,3 +126,8 @@ for contaminant in CONTAMINANTS:
 
         except FileNotFoundError as err:
             print("No se pudo encontrar el archivo: ", err.filename)
+
+AVERAGE_FOR_CONTAMINANT = OUTPUT_PATH.joinpath("average_for_contaminant.csv")
+
+with open(AVERAGE_FOR_CONTAMINANT, "w") as file:
+    file.write(pd.DataFrame(average_for_contaminant).to_csv(index=True, na_rep=-1, index_label="station", header=["co", "no2", "pm10"]))
