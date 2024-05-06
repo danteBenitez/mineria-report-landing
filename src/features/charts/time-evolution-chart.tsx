@@ -24,6 +24,7 @@ export function TimeEvolutionChart<T>({
     labelX,
     labelY,
     title,
+    comparisonValue,
     chartFn
 }: TimeEvolutionChartProps<T>) {
     const ref = useRef<HTMLDivElement | null>(null);
@@ -35,12 +36,13 @@ export function TimeEvolutionChart<T>({
             labelX,
             labelY,
             title,
-            width: size
+            width: size,
+            comparisonValue
         });
         if (!svg) return noop;
         if (ref.current.firstChild) ref.current.removeChild(ref.current.firstChild);
         ref.current.appendChild(svg);
-    }, [data, labelX, labelY, title, size, chartFn]);
+    }, [data, labelX, labelY, title, size, chartFn, comparisonValue]);
 
     useEffect(() => {
         if (!ref.current) return noop;

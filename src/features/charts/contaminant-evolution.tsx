@@ -6,6 +6,12 @@ type ContaminantEvolutionChartProps = {
     contaminant: string,
     station: string,
     unit: string,
+    // Valor con el que comparar las mediciones
+    comparison?: number
+}
+
+function capitalize(str: string) {
+    return str.replace('_', ' ').split(' ').map(s => s[0].toUpperCase() + s.slice(1));
 }
 
 function parseAndProcessCsv(csv: string): [Date, number][] {
@@ -41,6 +47,7 @@ export function ContaminantEvolutionChart({
     contaminant,
     station,
     unit,
+    comparison
 }: ContaminantEvolutionChartProps) {
     const [data, setData] = useState<[Date, number][] | null>(null);
     const fieldName = `${contaminant}_${station}`;
@@ -56,9 +63,9 @@ export function ContaminantEvolutionChart({
                 console.error(err);
             })
     }, [data, fieldName]);
-    const title = `Concentración promedio de ${contaminant} en la estación ${station} a lo largo del tiempo`;
+    const title = `Concentración promedio de ${contaminant.toUpperCase()} en la estación ${capitalize(station)} a lo largo del tiempo`;
     
-    return data ? <DailyEvolutionChart data={data} labelX={"Fecha"} labelY={labelY} title={title} /> : null;
+    return data ? <DailyEvolutionChart data={data} labelX={"Fecha"} labelY={labelY} title={title} comparisonValue={comparison} /> : null;
 }
 
 export function ContaminantHourlyEvolutionChart({
@@ -90,7 +97,7 @@ export function ContaminantHourlyEvolutionChart({
                 console.error(err);
             })
     }, [data, fieldName]);
-    const title = `Concentración promedio de ${contaminant} en la estación ${station} a lo largo del tiempo`;
+    const title = `Concentración promedio de ${contaminant.toUpperCase()} en la estación ${capitalize(station)} a lo largo del día`;
     
     return data ? <HourEvolutionChart data={data} labelX={"Hora"} labelY={labelY} title={title} /> : null;
 }
