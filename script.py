@@ -33,8 +33,42 @@ def get_contaminant_avg_for_hours(measures: pd.DataFrame, station: str) -> pd.Da
     filtered = measures[["hora", station]]
 
     averages = filtered.groupby(["hora"]).mean()
-    print(averages)
+
     return averages
+
+def percentage_per_station(measures: pd.DataFrame, station: str, *, limit) -> pd.DataFrame:
+    """
+        Obtiene el porcentaje de mediciones por estación
+        que superan el límite permitido.
+    """
+    filtered = measures[["fecha", station]]
+    result = pd.DataFrame(index=[station], columns=["percentage"])
+
+    total = len(measures)
+    if total == 0:
+        result["percentage"] = [0]
+        return result
+
+    filtered: pd.DataFrame = filtered[filtered[station] > limit]
+
+    result["percentage"] = filtered.index.size * 100 / total
+    print(result)
+    return result
+
+def write_percentage_that_exceeds_limit(measures: pd.DataFrame, contaminant: str, station: str, file_path: str):
+    """
+        Escribe en un archivo el porcentaje de mediciones
+        que superan el límite permitido.
+    """
+    LIMIT_FOR_CONTAMINANT = {
+        "CO": 35,
+        "NO2": 200,
+        "PM10": 50
+    }
+
+    percentage = percentage_per_station(measures, station, limit=LIMIT_FOR_CONTAMINANT[contaminant])
+    with open(file_path, "w") as file:
+        file.write(percentage.to_csv(index=True, columns=["percentage"], header=["percentage"], index_label="station"))
 
 DATA_PATH = path.Path('public/data')
 OUTPUT_PATH = path.Path('public/data/processed/')
@@ -46,6 +80,9 @@ HOUR_EVOLUTION_PATH = OUTPUT_PATH.joinpath("hour-evolution")
 HOUR_EVOLUTION_PATH.mkdir(parents=True, exist_ok=True)
 TIME_EVOLUTION_PATH = OUTPUT_PATH.joinpath("time-evolution")
 TIME_EVOLUTION_PATH.mkdir(parents=True, exist_ok=True)
+
+PERCENTAGE_PATH = OUTPUT_PATH.joinpath("percentage")
+PERCENTAGE_PATH.mkdir(parents=True, exist_ok=True)
 
 START_YEAR = 2019
 
@@ -63,8 +100,13 @@ for contaminant in CONTAMINANTS:
 
             average = get_contaminant_avg(raw_data, station=station)
             average_for_hour = get_contaminant_avg_for_hours(raw_data, station=station)
+            
+            percentage_per_station(raw_data, station=station, limit=0.1)
 
             file_path_plain = f"{contaminant.lower()}_{station}.csv"
+
+            file_path = PERCENTAGE_PATH.joinpath(file_path_plain)
+            write_percentage_that_exceeds_limit(raw_data, contaminant, station, file_path)
 
             # Escritura de los archivos para los promedios por día
             file_path = TIME_EVOLUTION_PATH.joinpath(file_path_plain)
