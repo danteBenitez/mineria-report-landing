@@ -100,7 +100,9 @@ export function Main() {
             {/* <ContaminantEvolutionChart contaminant='co' station='centenario' unit='ppb' /> */}
         </section>
         <section>
-            <h2 className="fw-semibold">Evolución temporal</h2>
+            <HeadingWithIcon icon="sun">
+                Análisis de mediciones según la hora del día 
+            </HeadingWithIcon>
             <p>
                 Lorem ipsum dolor sit amet consectetur adipisicing elit Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis reiciendis laborum hic? Tempora officia iste, quasi debitis placeat beatae eum maxime? Blanditiis fuga vel fugit. Voluptates exercitationem debitis delectus voluptatum.
                 Alias tempora porro iste eaque illum dolore unde reiciendis quas nobis? Cumque dolorum voluptates, vero deleniti nesciunt amet quia quae saepe eveniet? Corrupti quia, rem aut repudiandae inventore quo cum?
@@ -109,7 +111,9 @@ export function Main() {
         </section>
 
         <section>
-            <h2 className="fw-semibold">Evolución temporal</h2>
+            <HeadingWithIcon icon="rulers">
+                Promedios de mediciones por estación
+            </HeadingWithIcon>
             <p>
                 Lorem ipsum dolor sit amet consectetur adipisicing elit Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis reiciendis laborum hic? Tempora officia iste, quasi debitis placeat beatae eum maxime? Blanditiis fuga vel fugit. Voluptates exercitationem debitis delectus voluptatum.
                 Alias tempora porro iste eaque illum dolore unde reiciendis quas nobis? Cumque dolorum voluptates, vero deleniti nesciunt amet quia quae saepe eveniet? Corrupti quia, rem aut repudiandae inventore quo cum?
