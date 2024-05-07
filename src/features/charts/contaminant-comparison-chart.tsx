@@ -6,6 +6,7 @@ import { html } from 'htl';
 import { TimeEvolutionChart } from "./time-evolution-chart";
 import { useEffect, useState } from "react";
 import { COLORS_FOR_CONTAMINANT, ContaminantEvolutionChartProps } from "./contaminant-evolution";
+import { capitalize } from "../../utils/capitalize";
 
 function graphContaminantComparison(data: [string, number][], options: Options) {
     console.log("data: ", data);
@@ -62,7 +63,7 @@ function parseAndProcessCsv(csv: string, contaminant: string): [string, number][
     const mapped = parsed
         .map(row => {
             return {
-                station: row.station,
+                station: capitalize(row.station),
                 average: parseFloat(row[contaminant]?.replace(',', '.')),
             }
         })

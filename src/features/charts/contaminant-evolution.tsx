@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import * as d3 from 'd3';
 import { DailyEvolutionChart, HourEvolutionChart } from "./time-evolution-chart";
+import { capitalize } from "../../utils/capitalize";
 
 export type ContaminantEvolutionChartProps = {
     contaminant: 'no2' | 'co' | 'pm10',
@@ -16,9 +17,6 @@ export const COLORS_FOR_CONTAMINANT = {
     pm10: 'green',
 };
 
-function capitalize(str: string) {
-    return str.replace('_', ' ').split(' ').map(s => s[0].toUpperCase() + s.slice(1)).join(' ');
-}
 
 function parseAndProcessCsv(csv: string): [Date, number][] {
     const parsed = d3.csvParse(csv);
