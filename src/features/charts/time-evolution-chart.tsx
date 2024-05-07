@@ -21,11 +21,8 @@ const noop = () => { };
  */
 export function TimeEvolutionChart<T>({
     data,
-    labelX,
-    labelY,
-    title,
-    comparisonValue,
-    chartFn
+    chartFn,
+    ...options
 }: TimeEvolutionChartProps<T>) {
     const ref = useRef<HTMLDivElement | null>(null);
     const [size, setSize] = useState(0);
@@ -33,21 +30,18 @@ export function TimeEvolutionChart<T>({
     useEffect(() => {
         if (!data || !ref.current || !size) return noop;
         const svg = chartFn(data, {
-            labelX,
-            labelY,
-            title,
+            ...options,
             width: size,
-            comparisonValue
         });
         if (!svg) return noop;
         if (ref.current.firstChild) ref.current.removeChild(ref.current.firstChild);
         ref.current.appendChild(svg);
-    }, [data, labelX, labelY, title, size, chartFn, comparisonValue]);
+    }, [data, chartFn, options, ref, size]);
 
     useEffect(() => {
         if (!ref.current) return noop;
         setSize(ref.current.clientWidth);
-        const handleResize = () => setSize(ref.current?.clientWidth ?? 0);
+        const handleResize = () => setSize(ref.current?.clientWidth ?? 200);
         window.addEventListener('resize', handleResize);
         return () => window.removeEventListener('resize', handleResize);
     }, [ref]);

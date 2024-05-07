@@ -91,6 +91,12 @@ average_for_contaminant = {
     "PM10": {}
 }
 
+average_for_contaminant_grouped_by_date = {
+    "NO2": {},
+    "CO": {},
+    "PM10": {}
+}
+
 for contaminant in CONTAMINANTS:
     for station in STATIONS:
         try: 
@@ -106,6 +112,9 @@ for contaminant in CONTAMINANTS:
             average_for_contaminant[contaminant][station] = raw_data[station].mean()
             
             average = get_contaminant_avg(raw_data, station=station)
+
+            average_for_contaminant_grouped_by_date[contaminant][station] = average
+
             average_for_hour = get_contaminant_avg_for_hours(raw_data, station=station)
 
             file_path_plain = f"{contaminant.lower()}_{station}.csv"

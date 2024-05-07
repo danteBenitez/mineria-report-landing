@@ -1,5 +1,5 @@
 import baLogo from '../../../assets/ba-logo.png';
-import { ContaminantEvolutionChart } from '../../charts/contaminant-evolution';
+import { ContaminantEvolutionChart, ContaminantHourlyEvolutionChart } from '../../charts/contaminant-evolution';
 import { HeadingWithIcon } from '../headings/heading-with-icon';
 import './main.css';
 
@@ -91,33 +91,58 @@ export function Main() {
                 Las medidas se realizan de forma diaria, promediando aquellas tomadas en cada día.
             </p>
             <ContaminantEvolutionChart contaminant='no2' station='centenario' unit={UNITS['no2']} />
-            <ContaminantEvolutionChart contaminant='co' station='centenario' unit={UNITS['co']} />
+            <ContaminantEvolutionChart contaminant='no2' station='cordoba' unit={UNITS['no2']} />
+            <ContaminantEvolutionChart contaminant='no2' station='la_boca' unit={UNITS['no2']} />
             <p>
-                Como se puede apreciar, las medidas
+                Como se puede apreciar, las variaciones que ocurren son más bien pequeñas, pero en este sentido destaca el dióxido de nitrógeno. Ese último contaminante, sin embargo, tiene una tendencia levemente decreciente en comparación a las mediciones desde 2019.
+                La excepción es la estación de La Boca, en que las medidas están aumentando en comparación a sus antecedentes.
             </p>
-        </section>
-        <section>
-            {/* <ContaminantEvolutionChart contaminant='co' station='centenario' unit='ppb' /> */}
+            <p>
+                A continuación, consideramos las medidas de dióxido de carbono:
+            </p>
+            <ContaminantEvolutionChart contaminant='co' station='centenario' unit={UNITS['co']} />
+            <ContaminantEvolutionChart contaminant='co' station='cordoba' unit={UNITS['co']} />
+            <ContaminantEvolutionChart contaminant='co' station='la_boca' unit={UNITS['co']} />
+            <p>
+                Por otro lado, las medidas de monóxido de carbono se mantienen reducidas en las tres estaciones; conservando, aún así, valores atípicos de hasta 17 ppb.
+                Es imposible decidir si estos se corresponden a errores de medición o a eventos puntuales, porque, en lo que respecta a los límites permitidos,
+                las mediciones están dentro de los <a>valores normales</a>.
+            </p>
         </section>
         <section>
             <HeadingWithIcon icon="sun">
-                Análisis de mediciones según la hora del día 
+                Análisis de mediciones según la hora del día
             </HeadingWithIcon>
             <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis reiciendis laborum hic? Tempora officia iste, quasi debitis placeat beatae eum maxime? Blanditiis fuga vel fugit. Voluptates exercitationem debitis delectus voluptatum.
-                Alias tempora porro iste eaque illum dolore unde reiciendis quas nobis? Cumque dolorum voluptates, vero deleniti nesciunt amet quia quae saepe eveniet? Corrupti quia, rem aut repudiandae inventore quo cum?
+                A continuación, comparamos las mediciones según la hora del día en que se dieron.
             </p>
-            {/* <ContaminantHourlyEvolutionChart contaminant='no2' station='centenario' unit='ppb' /> */}
+            <ContaminantHourlyEvolutionChart contaminant='no2' station='centenario' unit={UNITS['no2']} />
+            <ContaminantHourlyEvolutionChart contaminant='no2' station='cordoba' unit={UNITS['no2']} />
+            <ContaminantHourlyEvolutionChart contaminant='no2' station='la_boca' unit={UNITS['no2']} />
+            <p>
+                Es interesante la tendencia de, para todas las estaciones, <b>las mediciones del dióxido de nitrógeno alcanzan su máximo en el período desde las 18 hasta las 24.</b>
+            </p>
+            
+            <ContaminantHourlyEvolutionChart contaminant='co' station='centenario' unit={UNITS['co']} />
+            <ContaminantHourlyEvolutionChart contaminant='co' station='cordoba' unit={UNITS['co']} />
+            <ContaminantHourlyEvolutionChart contaminant='co' station='la_boca' unit={UNITS['co']} />
+
+            <p>
+                Con el monóxido de carbono, encontramos que alcanzan su máximo al principio y al final del día.
+            </p>
+
+            <ContaminantHourlyEvolutionChart contaminant='pm10' station='centenario' unit={UNITS['pm10']} />
+            <ContaminantHourlyEvolutionChart contaminant='pm10' station='cordoba' unit={UNITS['pm10']} />
+            <ContaminantHourlyEvolutionChart contaminant='pm10' station='la_boca' unit={UNITS['pm10']} />
+            <p>
+                Las partículas materiales, por otro lado, tienen una concentración casi exactamente constante a lo largo de todo el día.
+            </p>
         </section>
 
         <section>
             <HeadingWithIcon icon="rulers">
                 Promedios de mediciones por estación
             </HeadingWithIcon>
-            <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis reiciendis laborum hic? Tempora officia iste, quasi debitis placeat beatae eum maxime? Blanditiis fuga vel fugit. Voluptates exercitationem debitis delectus voluptatum.
-                Alias tempora porro iste eaque illum dolore unde reiciendis quas nobis? Cumque dolorum voluptates, vero deleniti nesciunt amet quia quae saepe eveniet? Corrupti quia, rem aut repudiandae inventore quo cum?
-            </p>
         </section>
     </main>;
 }

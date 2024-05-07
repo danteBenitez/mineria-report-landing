@@ -7,6 +7,7 @@ export type Options = {
     labelY: string,
     title: string,
     width: number,
+    color: string,
     // This value is used to compare the data with a threshold
     // and graph a line to show the threshold
     comparisonValue?: number
@@ -15,7 +16,7 @@ export type Options = {
 export function graphTimeEvolution(data: [Date, number][], options: Options) {
     return Plot.line(data, {
         tip: true,
-        stroke: '#1f77b4',
+        stroke: options.color,
     }).plot({
         x: {
             grid: true,
@@ -41,7 +42,7 @@ export function graphTimeEvolution(data: [Date, number][], options: Options) {
 export function graphHourEvolution(data: [number, number][], options: Options) {
     return Plot.barY(data, {
         tip: true,
-        stroke: '#1f77b4',
+        stroke: options.color,
         x: d => d[0],
         y: d => d[1],
     }).plot({

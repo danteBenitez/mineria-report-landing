@@ -3,15 +3,21 @@ import * as d3 from 'd3';
 import { DailyEvolutionChart, HourEvolutionChart } from "./time-evolution-chart";
 
 type ContaminantEvolutionChartProps = {
-    contaminant: string,
+    contaminant: 'no2' | 'co' | 'pm10',
     station: string,
     unit: string,
     // Valor con el que comparar las mediciones
     comparison?: number
 }
 
+const COLORS_FOR_CONTAMINANT = {
+    co: 'steelblue',
+    no2: 'red',
+    pm10: 'green',
+};
+
 function capitalize(str: string) {
-    return str.replace('_', ' ').split(' ').map(s => s[0].toUpperCase() + s.slice(1));
+    return str.replace('_', ' ').split(' ').map(s => s[0].toUpperCase() + s.slice(1)).join(' ');
 }
 
 function parseAndProcessCsv(csv: string): [Date, number][] {
@@ -55,17 +61,19 @@ export function ContaminantEvolutionChart({
     
     useEffect(() => {
         if (data) return;
-        fetch(`./data/processed/time-evolution/${fieldName}.csv`).then(res => res.text()).then(csv => {
+        const path = `./data/processed/time-evolution/${fieldName}.csv`;
+        console.log(path);
+        fetch(path).then(res => res.text()).then(csv => {
             const result = parseAndProcessCsv(csv);
             setData(result);
         })
-            .catch(err => {
-                console.error(err);
-            })
+        .catch(err => {
+            console.error(err);
+        })
     }, [data, fieldName]);
     const title = `Concentración promedio de ${contaminant.toUpperCase()} en la estación ${capitalize(station)} a lo largo del tiempo`;
     
-    return data ? <DailyEvolutionChart data={data} labelX={"Fecha"} labelY={labelY} title={title} comparisonValue={comparison} /> : null;
+    return data ? <DailyEvolutionChart data={data} labelX={"Fecha"} labelY={labelY} title={title} comparisonValue={comparison} color={COLORS_FOR_CONTAMINANT[contaminant]} /> : null;
 }
 
 export function ContaminantHourlyEvolutionChart({
@@ -99,5 +107,5 @@ export function ContaminantHourlyEvolutionChart({
     }, [data, fieldName]);
     const title = `Concentración promedio de ${contaminant.toUpperCase()} en la estación ${capitalize(station)} a lo largo del día`;
     
-    return data ? <HourEvolutionChart data={data} labelX={"Hora"} labelY={labelY} title={title} /> : null;
+    return data ? <HourEvolutionChart data={data} labelX={"Hora"} labelY={labelY} title={title} color={COLORS_FOR_CONTAMINANT[contaminant]} /> : null;
 }
