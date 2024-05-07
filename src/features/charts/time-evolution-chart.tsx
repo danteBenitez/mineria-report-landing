@@ -4,7 +4,7 @@ import { plot } from "@observablehq/plot";
 
 type PlotType = ReturnType<typeof plot>;
 
-type TimeEvolutionChartProps<T> = {
+export type TimeEvolutionChartProps<T> = {
     data: T,
     chartFn: (data: T, options: Options) => PlotType
 } & 

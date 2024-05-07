@@ -30,3 +30,8 @@
         padding-inline: 2.3rem;
     }
 }
+
+.main-content * {
+    scroll-behavior: smooth;
+    scroll-margin-top: 8rem;
+}

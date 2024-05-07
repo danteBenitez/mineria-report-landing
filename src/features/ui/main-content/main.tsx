@@ -1,4 +1,5 @@
 import baLogo from '../../../assets/ba-logo.png';
+import { ContaminantComparisonChart } from '../../charts/contaminant-comparison-chart';
 import { ContaminantEvolutionChart, ContaminantHourlyEvolutionChart } from '../../charts/contaminant-evolution';
 import { HeadingWithIcon } from '../headings/heading-with-icon';
 import './main.css';
@@ -21,7 +22,7 @@ const UNITS = {
 
 export function Main() {
     return <main className="main-content">
-        <div className='fw-bold d-flex justify-content-between align-items-center mt-4'>
+        <div className='fw-bold d-flex justify-content-between align-items-center mt-4' id="dataset">
             <HeadingWithIcon icon="database">
                 Descripción del <i>dataset</i>
             </HeadingWithIcon>
@@ -82,7 +83,7 @@ export function Main() {
                 </figcaption>
             </figure>
         </section>
-        <section>
+        <section id="evolucion">
             <HeadingWithIcon icon="clock">
                 Evolución temporal
             </HeadingWithIcon>
@@ -109,7 +110,7 @@ export function Main() {
                 las mediciones están dentro de los <a>valores normales</a>.
             </p>
         </section>
-        <section>
+        <section id="horas-del-dia">
             <HeadingWithIcon icon="sun">
                 Análisis de mediciones según la hora del día
             </HeadingWithIcon>
@@ -139,10 +140,22 @@ export function Main() {
             </p>
         </section>
 
-        <section>
+        <section id="comparacion">
             <HeadingWithIcon icon="rulers">
-                Promedios de mediciones por estación
+                Promedios de mediciones por estación.
             </HeadingWithIcon>
+            <p>
+                A continuación, comparamos los promedios de mediciones por estación, para cada contaminante.
+                Como en la estación de Palermo no se incluyen muchas mediciones, el valor asignado es -1, significando un valor inválido.
+            </p>
+            <ContaminantComparisonChart contaminant='no2' unit={UNITS['no2']} />
+            <ContaminantComparisonChart contaminant='co' unit={UNITS['co']} />
+            <ContaminantComparisonChart contaminant='pm10' unit={UNITS['pm10']} />
+
+            <p>
+                Con los valores definidos, podemos ver que la estación de Palermo, si bien no tiene mediciones de dióxido de nitrógeno o de partículas materiales,
+                cuenta con el nivel más alto de monóxido de carbono de las cuatro estaciones.
+            </p>
         </section>
     </main>;
 }

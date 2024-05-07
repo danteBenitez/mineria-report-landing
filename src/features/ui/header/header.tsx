@@ -8,8 +8,12 @@ export function Header() {
             <span className="text-accent-animated text-uppercase color-primary">Reporte</span>
         </a>
 
-        <ul className="nav nav-pills d-flex flex-wrap justify-content-center align-items-center p-2">
-            <li className="nav-item"><a href="#" className="text-accent-animated text-decoration-none fs-5" aria-current="page">Home</a></li>
+        <ul className="nav nav-pills d-flex flex-wrap justify-content-center align-items-center p-2 gap-3">
+            <li className="nav-item"><a href="#" className="text-accent-animated text-decoration-none fs-5" aria-current="page">Inicio</a></li>
+            <li className="nav-item"><a href="#dataset" className="text-accent-animated text-decoration-none fs-5" aria-current="page">Dataset</a></li>
+            <li className="nav-item"><a href="#evolucion" className="text-accent-animated text-decoration-none fs-5" aria-current="page">Evolución</a></li>
+            <li className="nav-item"><a href="#horas-del-dia" className="text-accent-animated text-decoration-none fs-5" aria-current="page">Horas</a></li>
+            <li className="nav-item"><a href="#comparacion" className="text-accent-animated text-decoration-none fs-5" aria-current="page">Comparación</a></li>
         </ul>
     </header>
 }

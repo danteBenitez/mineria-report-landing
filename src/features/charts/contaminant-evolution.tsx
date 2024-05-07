@@ -2,7 +2,7 @@ import { useEffect, useState } from "react"
 import * as d3 from 'd3';
 import { DailyEvolutionChart, HourEvolutionChart } from "./time-evolution-chart";
 
-type ContaminantEvolutionChartProps = {
+export type ContaminantEvolutionChartProps = {
     contaminant: 'no2' | 'co' | 'pm10',
     station: string,
     unit: string,
@@ -10,7 +10,7 @@ type ContaminantEvolutionChartProps = {
     comparison?: number
 }
 
-const COLORS_FOR_CONTAMINANT = {
+export const COLORS_FOR_CONTAMINANT = {
     co: 'steelblue',
     no2: 'red',
     pm10: 'green',
